@@ -34,6 +34,7 @@ public class textParser {
 		BufferedReader bufRead = new BufferedReader(input);
 		String myLine = null;
 		String toWrite;
+		int a=0;
 		
 		while ( (myLine = bufRead.readLine()) != null)
 		{
@@ -45,6 +46,7 @@ public class textParser {
 				rows.add(toWrite);
 			}
 		}
+		System.out.println(a);
 		bufRead.close();
 		return rows;
 	}

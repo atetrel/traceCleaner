@@ -19,6 +19,8 @@ public class TraceCleaner {
 		this.inputFilePath = inputFilePath;
 	}
 
+	
+	
 	public TraceCleaner() {
 		super();
 	}
