@@ -29,7 +29,7 @@ public class WriteFromListToFile {
 	}
 	
 	public void writeToFile() throws FileNotFoundException {
-		File result = new File(fileURI);
+		new File(fileURI);
 		PrintWriter out = new PrintWriter(fileURI);
 		for (int i=0;i<stringList.size();i++){
 			out.println(stringList.get(i));
@@ -37,20 +37,5 @@ public class WriteFromListToFile {
 		out.close();
 	}
 	
-	public static void main(String[] args) {
-		textParser tp = new textParser(
-				new File("S:\\SER_PILOTAGE_ET_INFOCENTRE\\COMMUN\\Pilotage\\V2\\Reinternalisation Framework\\02 - Documentation sur l'existant\\OdbcTrc\\SQL-20150904-001.LOG"));
-		ArrayList<String> toWrite;
-		try {
-			toWrite = tp.parse();
-			WriteFromListToFile wfltf = new WriteFromListToFile(toWrite,
-					"S:\\SER_PILOTAGE_ET_INFOCENTRE\\COMMUN\\Pilotage\\V2\\Reinternalisation Framework\\02 - Documentation sur l'existant\\OdbcTrc\\output.txt");
-			wfltf.writeToFile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 
 }

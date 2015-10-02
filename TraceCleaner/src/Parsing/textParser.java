@@ -40,26 +40,14 @@ public class textParser {
 			if (myLine.startsWith("DTWH") && myLine.contains("ENTER SQLExecDirectW")){
 				bufRead.readLine();
 				toWrite = bufRead.readLine();
+				toWrite = toWrite.substring(toWrite.indexOf("] ")+2, toWrite.length());
+				toWrite = toWrite.replace("\"", "");
 				rows.add(toWrite);
-				System.out.println(rows.get(rows.size()-1));
 			}
 		}
-		
+		bufRead.close();
 		return rows;
 	}
 	
-	
-	public static void main(String[] args) {
-		textParser p = new textParser(
-				new File ("S:\\SER_PILOTAGE_ET_INFOCENTRE\\COMMUN\\Pilotage\\V2\\Reinternalisation Framework\\02 - Documentation sur l'existant\\OdbcTrc\\SQL-20150904-001.LOG"));
-		
-		try {
-			p.parse().toString();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 
 }
