@@ -33,13 +33,15 @@ public class textParser {
 		FileReader input = new FileReader(file);
 		BufferedReader bufRead = new BufferedReader(input);
 		String myLine = null;
+		String toWrite;
 		
 		while ( (myLine = bufRead.readLine()) != null)
 		{
 			if (myLine.startsWith("DTWH") && myLine.contains("ENTER SQLExecDirectW")){
 				bufRead.readLine();
-				System.out.println(bufRead.readLine());
-				System.out.println();
+				toWrite = bufRead.readLine();
+				rows.add(toWrite);
+				System.out.println(rows.get(rows.size()-1));
 			}
 		}
 		
@@ -52,7 +54,7 @@ public class textParser {
 				new File ("S:\\SER_PILOTAGE_ET_INFOCENTRE\\COMMUN\\Pilotage\\V2\\Reinternalisation Framework\\02 - Documentation sur l'existant\\OdbcTrc\\SQL-20150904-001.LOG"));
 		
 		try {
-			p.parse();
+			p.parse().toString();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
