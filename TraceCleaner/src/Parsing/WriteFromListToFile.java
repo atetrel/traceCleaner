@@ -35,6 +35,7 @@ public class WriteFromListToFile {
 			out.println(stringList.get(i));
 		}
 		out.close();
+		System.out.println("hihi");
 	}
 	
 
