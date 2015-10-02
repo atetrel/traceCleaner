@@ -6,9 +6,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -43,6 +46,7 @@ public class Frame extends JFrame {
 			public void run() {
 				try {
 					Frame frame = new Frame();
+					frame.pack();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,8 +57,9 @@ public class Frame extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
 	 */
-	public Frame() {
+	public Frame() throws IOException {
 		
 		fileSelected=null;
 		setTitle("TraceCleaner");
@@ -64,31 +69,53 @@ public class Frame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
+		
+		// -------------------------------------------------------------------------------------------------------------
+		
+		
+		String path = "pictures\\cats.jpg";
+        File file = new File(path);
+        BufferedImage image = ImageIO.read(file);
+        JLabel labelImg = new JLabel(new ImageIcon(image));
+        GridBagConstraints gbc_labelImg = new GridBagConstraints();
+		gbc_labelImg.insets = new Insets(0, 0, 5, 5);
+		gbc_labelImg.gridx = 1;
+		gbc_labelImg.gridy = 1;
+        contentPane.add(labelImg,gbc_labelImg);
+		
+        
+        // ---------------------------------------------------------------------------------------------------------------
+        
+        
 		JLabel lblBrowseFileTo = new JLabel("Browse file to clean");
 		GridBagConstraints gbc_lblBrowseFileTo = new GridBagConstraints();
 		gbc_lblBrowseFileTo.insets = new Insets(0, 0, 5, 5);
-		gbc_lblBrowseFileTo.gridx = 2;
-		gbc_lblBrowseFileTo.gridy = 1;
+		gbc_lblBrowseFileTo.gridx = 3;
+		gbc_lblBrowseFileTo.gridy = 5;
 		contentPane.add(lblBrowseFileTo, gbc_lblBrowseFileTo);
+		
+		
+		// ------------------------------------------------------------------------------------------
+		
 		
 		JLabel lblOutpufileName = new JLabel("OutputFile Name");
 		GridBagConstraints gbc_lblOutpufileName = new GridBagConstraints();
 		gbc_lblOutpufileName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblOutpufileName.gridx = 5;
-		gbc_lblOutpufileName.gridy = 1;
+		gbc_lblOutpufileName.gridy = 5;
 		contentPane.add(lblOutpufileName, gbc_lblOutpufileName);
 		
 		JButton BrowseButton = new JButton("Browse");
 		GridBagConstraints gbc_BrowseButton = new GridBagConstraints();
 		gbc_BrowseButton.insets = new Insets(0, 0, 5, 5);
-		gbc_BrowseButton.gridx = 2;
-		gbc_BrowseButton.gridy = 2;
+		gbc_BrowseButton.gridx = 3;
+		gbc_BrowseButton.gridy = 7;
 		contentPane.add(BrowseButton, gbc_BrowseButton);
 		
 		
@@ -120,26 +147,28 @@ public class Frame extends JFrame {
 		gbc_txtOutputfileName.insets = new Insets(0, 0, 5, 5);
 		gbc_txtOutputfileName.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtOutputfileName.gridx = 5;
-		gbc_txtOutputfileName.gridy = 2;
+		gbc_txtOutputfileName.gridy = 7;
 		contentPane.add(txtOutputfileName, gbc_txtOutputfileName);
 		txtOutputfileName.setColumns(10);
-		
-		
 		
 		lblFileSelected = new JLabel("<No file selected>");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 2;
-		gbc_label.gridy = 3;
+		gbc_label.gridx = 3;
+		gbc_label.gridy = 9;
 		contentPane.add(lblFileSelected, gbc_label);
+		
+		
+		// ------------------------------------------------------------------------------------------------
 		
 		
 		JButton btnClean = new JButton("Clean");
 		GridBagConstraints gbc_btnClean = new GridBagConstraints();
 		gbc_btnClean.insets = new Insets(0, 0, 5, 5);
 		gbc_btnClean.gridx = 5;
-		gbc_btnClean.gridy = 5;
+		gbc_btnClean.gridy = 11;
 		contentPane.add(btnClean, gbc_btnClean);
+		
 		
 		btnClean.addActionListener(new ActionListener() {
 			
@@ -162,6 +191,7 @@ public class Frame extends JFrame {
 							e.printStackTrace();
 						}
 					}
+					JOptionPane.showConfirmDialog(null,"File created : "+fileSelectedParent+"\\"+txtOutputfileName.getText()+".txt","Information", JOptionPane.CLOSED_OPTION);
 				}
 				
 			}
